@@ -17,7 +17,8 @@
   to be expected that if you cannot write ONE file, you may not be
   able to write the rest of them!).
 
-  2017-10-06    0.1.0   Project moved to GitHub. (TN)
+  2017-10-06    0.1.1   Translated error messages to English for wider
+                        audience :) (TN)
 
 '''
 
@@ -25,7 +26,7 @@ import sys
 import os.path
 import trsparser
 
-version = '0.0.3'
+version = '0.1.1'
 
 def write_praat(data, filename):
     '''Write Transcriber data as Praat TextGrid'''
@@ -64,21 +65,21 @@ def write_praat(data, filename):
                                 for line in buff])
 
 if not sys.argv[1:]:
-    print('Käyttö: trs2textgrid trs-tiedosto...', file=sys.stderr)
+    print('Usage: trs2textgrid trsfile...', file=sys.stderr)
     sys.exit(0)
 
 for name in sys.argv[1:]:
     try:
         trs = trsparser.TransObject(name)
     except (IOError, ValueError, xml.parsers.expat.ExpatError):
-        print('VIRHE: tiedostonlukuvirhe: "{}"'.format(name), file=sys.stderr)
+        print('ERROR: I/O or parse error: "{}"'.format(name), file=sys.stderr)
         continue
 
     # This is important!
     trs.to_intervals()
 
     if len(trs.episodes) != 1 or len(trs.episodes[0]) != 1:
-        print('VIRHE: Skripti hallitsee vain yksiepisodiset .trs-tiedostot',
+        print('ERROR: Script only handles one episode, one section',
               file=sys.stderr)
         continue
 
@@ -86,6 +87,6 @@ for name in sys.argv[1:]:
     try:
         write_praat(trs, textgrid)
     except (PermissionError, IOError):
-        print('VIRHE: Tiedostoa ei voi kirjoittaa: "{}"'.format(textgrid),
+        print('ERROR: Could not write to file: "{}"'.format(textgrid),
               file=sys.stderr)
         sys.exit(1)

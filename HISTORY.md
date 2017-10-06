@@ -14,3 +14,4 @@
 * 2017-10-05    0.0.2   Changed structure. (TN)
 * 2017-10-06    0.0.3   Bug fixes. (TN)
 * 2017-10-06    0.1.0   Project moved to GitHub. (TN)
+* 2017-10-06    0.1.1   Translated error messages to English for wider audience :) (TN)
