@@ -6,11 +6,7 @@
   Tommi Nieminen <software@legisign.org> 2017.
   Licensed under GNU General Public License (GPL) version 3.0 or newer.
 
-  2017-10-05    0.0.1   Development started.
-  2017-10-05    0.0.2   Full classes instead of named tuples to ensure easier
-                        iteration.
-  2017-10-05    0.0.3   Added TransObject.to_intervals() method.
-  2017-10-05    0.0.4   Added ParseError.
+  2017-10-06    0.1.0   Project moved to GitHub. Small fixes. (TN)
 
   Error handling is mostly left for the caller. Possible exceptions include
   * IOError and its subcategories when input file cannot be read,
@@ -29,7 +25,7 @@
 import codecs
 import xml.parsers.expat
 
-version = '0.0.4'
+version = '0.1.0'
 
 # Classes
 
@@ -115,8 +111,8 @@ class TransObject(object):
             self._curr_section = Section(category=cat, beg=beg, end=end)
         elif element == 'Turn':
             try:
-                beg=float(attrs['startTime'])
-                end=float(attrs['endTime'])
+                beg = float(attrs['startTime'])
+                end = float(attrs['endTime'])
             except ValueError:
                 raise ParseError
             self._curr_turn = Turn(beg=beg, end=end)

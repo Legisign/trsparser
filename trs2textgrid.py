@@ -17,9 +17,7 @@
   to be expected that if you cannot write ONE file, you may not be
   able to write the rest of them!).
 
-  2017-10-05    0.0.1   Development started. (TN)
-  2017-10-05    0.0.2   Changed structure. (TN)
-  2017-10-06    0.0.3   Bug fixes. (TN)
+  2017-10-06    0.1.0   Project moved to GitHub. (TN)
 
 '''
 
