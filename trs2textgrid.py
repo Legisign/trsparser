@@ -19,6 +19,7 @@
 
   2017-10-05    0.0.1   Development started. (TN)
   2017-10-05    0.0.2   Changed structure. (TN)
+  2017-10-06    0.0.3   Bug fixes. (TN)
 
 '''
 
@@ -26,7 +27,7 @@ import sys
 import os.path
 import trsparser
 
-version = '0.0.2'
+version = '0.0.3'
 
 def write_praat(data, filename):
     '''Write Transcriber data as Praat TextGrid'''
@@ -36,16 +37,16 @@ def write_praat(data, filename):
         buff = ['File type = "ooTextFile"',
                 'Object class = "TextGrid"',
                 '',
-                'xmin = {}\n'.format(section.beg),
-                'xmax = {}\n'.format(section.end),
+                'xmin = {}'.format(section.beg),
+                'xmax = {}'.format(section.end),
                 'tiers? <exists>',
-                'size = {}\n'.format(len(section)),
+                'size = {}'.format(len(section)),
                 'item []:']
         out.writelines([line + '\n' for line in buff])
 
         for turnid, turn in enumerate(section):
             indent = ' ' * 4
-            out.write('{}item[{}]\n'.format(indent, turnid + 1))
+            out.write('{}item[{}]:\n'.format(indent, turnid + 1))
             indent = ' ' * 8
             buff = ['class = "IntervalTier"',
                     'name = "{}"'.format(turnid + 1),
@@ -55,8 +56,10 @@ def write_praat(data, filename):
             out.writelines(['{}{}\n'.format(indent, line) \
                             for line in buff])
             for chunkid, chunk in enumerate(turn):
-                buff = ['intervals [{}]:'.format(chunkid),
-                        'xmin = {}'.format(chunk.beg),
+                indent = ' ' * 8
+                out.write('{}intervals [{}]:\n'.format(indent, chunkid + 1))
+                indent = ' ' * 12
+                buff = ['xmin = {}'.format(chunk.beg),
                         'xmax = {}'.format(chunk.end),
                         'text = "{}"'.format(chunk.text.replace('"', '""'))]
                 out.writelines(['{}{}\n'.format(indent, line) \
