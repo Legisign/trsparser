@@ -1,12 +1,22 @@
 #!/usr/bin/env python3
-'''trsparser.py -- Transcriber parser
+'''trsparser -- Transcriber parser
 
-  A parser for Transcriber .trs file format.
+  Python module for parsing Transcriber™ files.
+  Copyright © 2019 Legisign.org, Tommi Nieminen <software@legisign.org>
 
-  Tommi Nieminen <software@legisign.org> 2017.
-  Licensed under GNU General Public License (GPL) version 3.0 or newer.
 
-  2017-10-06    0.1.0   Project moved to GitHub. Small fixes. (TN)
+  This program is free software: you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
+
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+
+  You should have received a copy of the GNU General Public License
+  along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
   Error handling is mostly left for the caller. Possible exceptions include
   * IOError and its subcategories when input file cannot be read,
@@ -18,14 +28,14 @@
   collected only when there IS character data.
 
   POSSIBLE BUG: Assumes Latin-1 (ISO 8859-1) character coding in the .trs
-  file. This may have changed in later Transcriber versions.
+  file. This may have changed in later Transcriber™ versions.
 
 '''
 
 import codecs
 import xml.parsers.expat
 
-version = '0.1.0'
+version = '0.1.1'
 
 # Classes
 
@@ -164,7 +174,7 @@ class TransObject(object):
 if __name__ == '__main__':
     import sys
 
-    # A simple test run if run as a script
+    # A simple test if run as a script
     for arg in sys.argv[1:]:
         try:
             trs = TransObject(arg)
